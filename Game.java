@@ -34,23 +34,25 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room earth, iss, moon, mars, jupiter, saturn;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        earth = new Room("in the earth. Starting point");
+        iss = new Room("in international space station");
+        moon = new Room("in the moon");
+        mars = new Room("in mars");
+        jupiter = new Room("in jupiter");
+        saturn = new Room("in saturn");
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        earth.setExits(iss, null, null, null);
+        iss.setExits(null, moon, earth, mars);
+        moon.setExits(null, null, null, iss);
+        mars.setExits(null, iss, jupiter, null);
+        jupiter.setExits(mars, null, saturn, null);
+        saturn.setExits(jupiter, null, null, null);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = earth;  // start game outside
     }
 
     /**
