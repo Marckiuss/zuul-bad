@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room earth, iss, moon, mars, jupiter, saturn;
+        Room earth, iss, moon, mars, jupiter, saturn, ess;
       
         // create the rooms
         earth = new Room("in the earth. Starting point");
@@ -43,14 +43,15 @@ public class Game
         mars = new Room("in mars");
         jupiter = new Room("in jupiter");
         saturn = new Room("in saturn");
+        ess = new Room("in european space station");
         
         // initialise room exits
-        earth.setExits(iss, null, null, null);
-        iss.setExits(null, moon, earth, mars);
-        moon.setExits(null, null, null, iss);
-        mars.setExits(null, iss, jupiter, null);
-        jupiter.setExits(mars, null, saturn, null);
-        saturn.setExits(jupiter, null, null, null);
+        earth.setExits(iss, null, null, null, ess);
+        iss.setExits(null, moon, earth, mars, null);
+        moon.setExits(null, null, null, iss, null);
+        mars.setExits(null, iss, jupiter, null, null);
+        jupiter.setExits(mars, null, saturn, null, null);
+        saturn.setExits(jupiter, null, null, null, null);
 
         currentRoom = earth;  // start game outside
     }
@@ -158,6 +159,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southEast")){
+            nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -182,6 +186,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit != null){
+            System.out.print("southEast");
         }
         System.out.println();
     }
