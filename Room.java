@@ -33,37 +33,13 @@ public class Room
     
     public Room getExit(String direction){
         Room nextRoom = null;
-        if(direction.equals("north")){
-            nextRoom = exits.get(direction);
-        }
-        if(direction.equals("south")){
-            nextRoom = exits.get(direction);
-        }
-        if(direction.equals("east")){
-            nextRoom = exits.get(direction);
-        }
-        if(direction.equals("west")){
-            nextRoom = exits.get(direction);
-        }
-        if(direction.equals("southEast")){
-            nextRoom = exits.get(direction);
-        }
+        nextRoom = exits.get(direction);
         return nextRoom;
     }
     
     public String getExitString(){
-        String exit = "";
-        if(exits.containsKey("north"))
-            exit += "north";
-        if(exits.containsKey("south"))
-            exit += "south";
-        if(exits.containsKey("east"))
-            exit += "east";
-        if(exits.containsKey("west"))
-            exit += "west";
-        if(exits.containsKey("southEast"))
-            exit += "southEast";
-        return exit;
+        String textoADevolver = exits.keySet().toString().substring(1, exits.keySet().toString().length()-1).replaceAll(",", "");
+        return textoADevolver;
     }
     
     /**
