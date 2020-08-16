@@ -166,8 +166,8 @@ public class Game
     }
 
     private void printLocalInfo(){
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: " + currentRoom.getExitString());
+        System.out.println(currentRoom.getLongDescription());
+        System.out.print("Exits: " + currentRoom.getExitsString());
     }
     
     /** 

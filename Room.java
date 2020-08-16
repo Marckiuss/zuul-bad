@@ -37,7 +37,7 @@ public class Room
         return nextRoom;
     }
 
-    public String getExitString(){
+    public String getExitsString(){
         String textoADevolver = exits.keySet().toString().substring(1, exits.keySet().toString().length()-1).replaceAll(",", "");
         return textoADevolver;
     }
@@ -77,6 +77,18 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+
+    /**
+     * Devuelve un texto con la descripcion completa de la habitacion, que 
+     * incluye la descripcion corta de la sala y las salidas de la misma. Por ejemplo:
+     *     You are in the lab
+     *     Exits: north west southwest
+     * @return Una descripcion completa de la habitacion incluyendo sus salidas
+     */
+    public String getLongDescription(){
+        String textoADevolver = "You are in " + getDescription() + "\n" + "Exits: " + getExitsString();
+        return textoADevolver;
     }
 
 }
