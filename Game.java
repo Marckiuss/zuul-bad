@@ -38,24 +38,28 @@ public class Game
       
         // create the rooms
         earth = new Room("in the earth. Starting point");
-        iss = new Room("in international space station");
+        iss = new Room("in the international space station");
         moon = new Room("in the moon");
         mars = new Room("in mars");
         jupiter = new Room("in jupiter");
         saturn = new Room("in saturn");
-        ess = new Room("in european space station");
+        ess = new Room("in the european space station");
         
         // initialise room exits
         earth.setExits("north", iss);
+        earth.setExits("northEast", moon);
         earth.setExits("southEast", ess);
         iss.setExits("east", moon);
         iss.setExits("west", mars);
+        iss.setExits("south", earth);
         moon.setExits("west",iss);
+        moon.setExits("southWest",earth);
         mars.setExits("east", iss);
         mars.setExits("south", jupiter);
         jupiter.setExits("north", mars);
         jupiter.setExits("south", saturn);
         saturn.setExits("north", jupiter);
+        ess.setExits("northWest", earth);
 
         currentRoom = earth;  // start game outside
     }

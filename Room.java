@@ -30,18 +30,18 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-    
+
     public Room getExit(String direction){
         Room nextRoom = null;
         nextRoom = exits.get(direction);
         return nextRoom;
     }
-    
+
     public String getExitString(){
         String textoADevolver = exits.keySet().toString().substring(1, exits.keySet().toString().length()-1).replaceAll(",", "");
         return textoADevolver;
     }
-    
+
     /**
      * Define the exits of this room.  Every direction either leads
      * to another room or is null (no exit there).
@@ -54,14 +54,21 @@ public class Room
     {
         if(direction.equals("north"))
             exits.put(direction, location);
+        if(direction.equals("northEast"))
+            exits.put(direction, location);
+        if(direction.equals("northWest"))
+            exits.put(direction, location);
         if(direction.equals("south"))
+            exits.put(direction, location);
+        if(direction.equals("southEast"))
+            exits.put(direction, location);
+        if(direction.equals("southWest"))
             exits.put(direction, location);
         if(direction.equals("east"))
             exits.put(direction, location);
         if(direction.equals("west"))
             exits.put(direction, location);
-        if(direction.equals("southEast"))
-            exits.put(direction, location);
+
     }
 
     /**
