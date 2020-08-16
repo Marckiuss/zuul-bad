@@ -37,13 +37,13 @@ public class Game
         Room earth, iss, moon, mars, jupiter, saturn, ess;
       
         // create the rooms
-        earth = new Room("in the earth. Starting point");
-        iss = new Room("in the international space station");
-        moon = new Room("in the moon");
-        mars = new Room("in mars");
-        jupiter = new Room("in jupiter");
-        saturn = new Room("in saturn");
-        ess = new Room("in the european space station");
+        earth = new Room("the earth. Starting point");
+        iss = new Room("the international space station");
+        moon = new Room("the moon");
+        mars = new Room("mars");
+        jupiter = new Room("jupiter");
+        saturn = new Room("saturn");
+        ess = new Room("the european space station");
         
         // initialise room exits
         earth.setExits("north", iss);
@@ -142,7 +142,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println(parser.showCommands());
     }
 
     /** 
@@ -173,7 +173,6 @@ public class Game
 
     private void printLocalInfo(){
         System.out.println(currentRoom.getLongDescription());
-        System.out.print("Exits: " + currentRoom.getExitsString());
     }
     
     /** 
