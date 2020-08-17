@@ -42,7 +42,7 @@ public class CommandWords
     /** 
      * Imprime por pantalla todos los comandos válidos 
      */
-    public String showAll(){
+    public String getCommandList(){
         String aDevolver = "";
         for(int i = 0; i<validCommands.length; i++){
             aDevolver += validCommands[i] + " ";

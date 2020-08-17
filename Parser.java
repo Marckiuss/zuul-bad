@@ -66,8 +66,8 @@ public class Parser
     /** 
      * Imprime por pantalla todos los comandos válidos 
      */
-    public String showCommands(){
-        return commands.showAll();
+    public void showCommands(){
+        System.out.println(commands.getCommandList());
     }
 }
 
