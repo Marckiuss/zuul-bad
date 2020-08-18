@@ -34,24 +34,25 @@ public class Game
      */
     private void createRooms()
     {
-        Item pickaxe, rayGun, alienSecret;
+        Item pickaxe, rayGun, alienSecret, spaceFood, rover;
         
-        //create the items
-        // create the objects
+        //create items
         pickaxe = new Item("Pickaxe", 2000);
         rayGun = new Item("Ray gun", 500);
         alienSecret = new Item("Alien Secret", 1000);
+        spaceFood = new Item("Space food", 800);
+        rover = new Item("Rover",10000);
         
         Room earth, iss, moon, mars, jupiter, saturn, ess;
       
         // create the rooms
-        earth = new Room("the earth. Starting point",null);
-        iss = new Room("the international space station", pickaxe);
-        moon = new Room("the moon", null);
-        mars = new Room("mars", rayGun);
-        jupiter = new Room("jupiter", null);
-        saturn = new Room("saturn", alienSecret);
-        ess = new Room("the european space station", null);
+        earth = new Room("the earth. Starting point");
+        iss = new Room("the international space station");
+        moon = new Room("the moon");
+        mars = new Room("mars");
+        jupiter = new Room("jupiter");
+        saturn = new Room("saturn");
+        ess = new Room("the european space station");
         
         // initialise room exits
         earth.setExits("north", iss);
@@ -68,8 +69,17 @@ public class Game
         jupiter.setExits("south", saturn);
         saturn.setExits("north", jupiter);
         ess.setExits("northWest", earth);
-
-        currentRoom = earth;  // start game outside
+        
+        // initialise room items
+        iss.addItem(pickaxe);
+        iss.addItem(spaceFood);
+        ess.addItem(pickaxe);
+        moon.addItem(rover);
+        mars.addItem(rayGun);
+        saturn.addItem(alienSecret);
+        
+        // start game outside
+        currentRoom = earth;  
     }
 
     /**

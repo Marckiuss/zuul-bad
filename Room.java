@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -17,8 +18,8 @@ import java.util.HashMap;
 public class Room 
 {
     private String description;
-    private Item item;
     private HashMap<String, Room> exits;
+    private ArrayList<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -26,11 +27,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, Item item) 
+    public Room(String description) 
     {
         this.description = description;
-        this.item = item;
         exits = new HashMap<String, Room>();
+        items = new ArrayList<Item>();
+        
     }
 
     public Room getExit(String direction){
@@ -89,11 +91,26 @@ public class Room
      * @return Una descripcion completa de la habitacion incluyendo sus salidas
      */
     public String getLongDescription(){
-        String textoADevolver = "You are in " + getDescription() + "\n" + "Exits: " + getExitsString() + "\n";
-        if(item != null){
-            textoADevolver += "There's something in this room!" + "\n" + item.getDescription();
+        String textoADevolver = "You are in " + getDescription() + "\n" + getItems() + "\n" + "Exits: " + getExitsString() + "\n";
+        return textoADevolver;
+    }
+    
+    public String getItems(){
+        String textoADevolver = "";
+        if(!items.isEmpty()){
+            textoADevolver += "There's something in this room!: \n" + "\n";
+            for(Item item : items){
+                textoADevolver += item.getDescription() + "\n" + "\n";
+            }
+        }
+        else{
+            textoADevolver += "There are no items in this room";
         }
         return textoADevolver;
+    }
+    
+    public void addItem(Item item){
+        items.add(item);        
     }
 }
 
