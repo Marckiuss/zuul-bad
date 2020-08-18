@@ -37,13 +37,13 @@ public class Game
         Room earth, iss, moon, mars, jupiter, saturn, ess;
       
         // create the rooms
-        earth = new Room("the earth. Starting point");
-        iss = new Room("the international space station");
-        moon = new Room("the moon");
-        mars = new Room("mars");
-        jupiter = new Room("jupiter");
-        saturn = new Room("saturn");
-        ess = new Room("the european space station");
+        earth = new Room("the earth. Starting point", null, null);
+        iss = new Room("the international space station", "picaxe", "2kg");
+        moon = new Room("the moon", null, null);
+        mars = new Room("mars", "Ray Gun", "600g");
+        jupiter = new Room("jupiter", null, null);
+        saturn = new Room("saturn", "Alien secret", "5kg");
+        ess = new Room("the european space station", null, null);
         
         // initialise room exits
         earth.setExits("north", iss);
