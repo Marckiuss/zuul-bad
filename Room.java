@@ -17,8 +17,7 @@ import java.util.HashMap;
 public class Room 
 {
     private String description;
-    private String itemDescription;
-    private String itemWeight;
+    private Item item;
     private HashMap<String, Room> exits;
 
     /**
@@ -27,11 +26,10 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, String itemDescription, String itemWeight) 
+    public Room(String description, Item item) 
     {
         this.description = description;
-        this.itemDescription = itemDescription;
-        this.itemWeight = itemWeight;
+        this.item = item;
         exits = new HashMap<String, Room>();
     }
 
@@ -91,16 +89,11 @@ public class Room
      * @return Una descripcion completa de la habitacion incluyendo sus salidas
      */
     public String getLongDescription(){
-        String textoADevolver = "You are in " + getDescription() + "\n" + getItem() + "\n" + "Exits: " + getExitsString();
-        return textoADevolver;
-    }
-
-    public String getItem(){
-        String aDevolver = "";
-        if(itemDescription != null){
-            aDevolver = "There'something in the room!:  \n" + "item: " + itemDescription + "\n"+ "weight: " + itemWeight;
+        String textoADevolver = "You are in " + getDescription() + "\n" + "Exits: " + getExitsString() + "\n";
+        if(item != null){
+            textoADevolver += "There's something in this room!" + "\n" + item.getDescription();
         }
-        return aDevolver;
+        return textoADevolver;
     }
 }
 

@@ -34,16 +34,24 @@ public class Game
      */
     private void createRooms()
     {
+        Item pickaxe, rayGun, alienSecret;
+        
+        //create the items
+        // create the objects
+        pickaxe = new Item("Pickaxe", 2000);
+        rayGun = new Item("Ray gun", 500);
+        alienSecret = new Item("Alien Secret", 1000);
+        
         Room earth, iss, moon, mars, jupiter, saturn, ess;
       
         // create the rooms
-        earth = new Room("the earth. Starting point", null, null);
-        iss = new Room("the international space station", "picaxe", "2kg");
-        moon = new Room("the moon", null, null);
-        mars = new Room("mars", "Ray Gun", "600g");
-        jupiter = new Room("jupiter", null, null);
-        saturn = new Room("saturn", "Alien secret", "5kg");
-        ess = new Room("the european space station", null, null);
+        earth = new Room("the earth. Starting point",null);
+        iss = new Room("the international space station", pickaxe);
+        moon = new Room("the moon", null);
+        mars = new Room("mars", rayGun);
+        jupiter = new Room("jupiter", null);
+        saturn = new Room("saturn", alienSecret);
+        ess = new Room("the european space station", null);
         
         // initialise room exits
         earth.setExits("north", iss);
