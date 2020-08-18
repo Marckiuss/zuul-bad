@@ -19,7 +19,9 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+    private String lastCommand;
+    private Room previousRoom;
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -27,6 +29,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        this.lastCommand = "back";
     }
 
     /**
@@ -35,16 +38,16 @@ public class Game
     private void createRooms()
     {
         Item pickaxe, rayGun, alienSecret, spaceFood, rover;
-        
+
         //create items
         pickaxe = new Item("Pickaxe", 2000);
         rayGun = new Item("Ray gun", 500);
         alienSecret = new Item("Alien Secret", 1000);
         spaceFood = new Item("Space food", 800);
         rover = new Item("Rover",10000);
-        
+
         Room earth, iss, moon, mars, jupiter, saturn, ess;
-      
+
         // create the rooms
         earth = new Room("the earth. Starting point");
         iss = new Room("the international space station");
@@ -53,7 +56,7 @@ public class Game
         jupiter = new Room("jupiter");
         saturn = new Room("saturn");
         ess = new Room("the european space station");
-        
+
         // initialise room exits
         earth.setExits("north", iss);
         earth.setExits("northEast", moon);
@@ -69,7 +72,7 @@ public class Game
         jupiter.setExits("south", saturn);
         saturn.setExits("north", jupiter);
         ess.setExits("northWest", earth);
-        
+
         // initialise room items
         iss.addItem(pickaxe);
         iss.addItem(spaceFood);
@@ -77,9 +80,10 @@ public class Game
         moon.addItem(rover);
         mars.addItem(rayGun);
         saturn.addItem(alienSecret);
-        
+
         // start game outside
-        currentRoom = earth;  
+        currentRoom = earth; 
+        previousRoom = earth;
     }
 
     /**
@@ -91,7 +95,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -130,25 +134,35 @@ public class Game
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
             printHelp();
+            lastCommand = "help";
         }
         else if (commandWord.equals("go")) {
             goRoom(command);
+            lastCommand = "room";
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+            lastCommand = "quit";
         }
         else if (commandWord.equals("look")) {
             look();
+            lastCommand = "quit";
         }
         else if (commandWord.equals("eat")) {
             eat();
+            lastCommand = "eat";
         }
-
+        else if (commandWord.equals("back") && lastCommand != "back"){
+            back();
+            lastCommand = "back";
+        }
+        else{
+            System.out.println("You can't do that :/");
+        }
         return wantToQuit;
     }
 
     // implementations of user commands:
-
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -184,6 +198,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
             printLocalInfo();
         }
@@ -192,7 +207,7 @@ public class Game
     private void printLocalInfo(){
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -208,12 +223,17 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+
     private void look(){
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     private void eat(){
         System.out.println("You have eaten now and you are not hungry any more");
+    }
+
+    private void back(){
+        currentRoom = previousRoom;
+        printLocalInfo();
     }
 }
