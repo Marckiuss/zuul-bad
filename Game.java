@@ -41,11 +41,11 @@ public class Game
         Item pickaxe, rayGun, alienSecret, spaceFood, rover;
 
         //create items
-        pickaxe = new Item("Pickaxe", 2000);
-        rayGun = new Item("Ray gun", 500);
-        alienSecret = new Item("Alien Secret", 1000);
-        spaceFood = new Item("Space food", 800);
-        rover = new Item("Rover",10000);
+        pickaxe = new Item("Pickaxe", 2000, true);
+        rayGun = new Item("Ray gun", 500, true);
+        alienSecret = new Item("Alien Secret", 99999, false);
+        spaceFood = new Item("Space food", 800, true);
+        rover = new Item("Rover",10000, false);
 
         Room earth, iss, moon, mars, jupiter, saturn, ess;
 

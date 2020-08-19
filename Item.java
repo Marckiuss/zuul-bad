@@ -9,14 +9,16 @@ public class Item
     // instance variables - replace the example below with your own
     private int itemWeight;
     private String itemDescription;
+    private boolean pickable;
 
     /**
      * Constructor for objects of class Item
      */
-    public Item(String description, int weight)
+    public Item(String description, int weight, boolean pickable)
     {
-        this.itemWeight = weight;
         this.itemDescription = description;
+        this.itemWeight = weight;
+        this.pickable = pickable;
     }
 
     public String getDescription(){
