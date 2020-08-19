@@ -22,7 +22,7 @@ public class Item
     public String getDescription(){
         String aDevolver = "";
         if(itemDescription != null){
-            aDevolver = "Item: " + itemDescription + "\n"+ "Weight: " + itemWeight;
+            aDevolver = "Item: " + itemDescription + "\n"+ "Weight: " + itemWeight + "\n";
         }
         return aDevolver;
     }
