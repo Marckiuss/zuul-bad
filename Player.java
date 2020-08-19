@@ -1,14 +1,17 @@
 import java.util.Stack;
+import java.util.ArrayList;
 public class Player
 {
     private Stack<Room> rooms;
     private Room currentRoom;
+    private ArrayList<Item> pickedItems;
     /**
      * Constructor for objects of class Player
      */
     public Player()
     {
         rooms = new Stack<Room>();
+        pickedItems = new ArrayList<Item>();
     }
 
     public void setCurrentRoom(Room room){
@@ -60,6 +63,23 @@ public class Player
         if(!rooms.isEmpty()){
             currentRoom = rooms.pop();
             look();
+        }
+    }
+
+    public void take(String itemDescription){
+        ArrayList<Item> availableItems = currentRoom.getRoomItems();
+        boolean picked = false;
+        for(int i = 0; i < availableItems.size() && !picked; i++){
+            Item item = availableItems.get(i);
+            if(item.getDescription().equals(item.getDescription())){
+                picked = true;
+                pickedItems.add(item);
+                currentRoom.removeItem(item);
+                System.out.println("You've picked up" + item.getDescription());                
+            }
+            else{
+                System.out.println("Oh, it seems you can't do that");
+            }
         }
     }
 }

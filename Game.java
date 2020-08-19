@@ -151,6 +151,11 @@ public class Game
         else if (commandWord.equals("back")){
             player.back();
         }
+        else if(commandWord.equals("take")){
+            if(command.hasSecondWord()){
+                player.take(command.getSecondWord().toString());
+            }
+        }
         else{
             System.out.println("You can't do that :/");
         }

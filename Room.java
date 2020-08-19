@@ -112,5 +112,13 @@ public class Room
     public void addItem(Item item){
         items.add(item);        
     }
+    
+    public ArrayList getRoomItems(){
+        return items;
+    }
+    
+    public void removeItem(Item item){
+        items.remove(item);
+    }
 }
 
