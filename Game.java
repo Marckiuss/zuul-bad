@@ -43,7 +43,7 @@ public class Game
         //create items
         pickaxe = new Item("pickaxe", "pickaxe", 2000, true);
         rayGun = new Item("Ray gun", "rayGun", 500, true);
-        alienSecret = new Item("Alien Secret", "secret", 99999, false);
+        alienSecret = new Item("Alien Secret", "secret", 2500, false);
         spaceFood = new Item("Space food", "food", 800, true);
         rover = new Item("Rover", "rover",10000, false);
 
@@ -161,6 +161,11 @@ public class Game
         else if(commandWord.equals("drop")){
             if(command.hasSecondWord()){
                 player.drop(command.getSecondWord().toString());
+            }
+        }
+        else if(commandWord.equals("read")){
+            if(command.hasSecondWord()){
+                player.read(command.getSecondWord().toString());
             }
         }
         else{

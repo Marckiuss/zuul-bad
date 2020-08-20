@@ -11,7 +11,6 @@ public class Item
     private String itemDescription;
     private boolean pickable;
     private String id;
-
     /**
      * Constructor for objects of class Item
      */

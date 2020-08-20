@@ -5,8 +5,9 @@ public class Player
     private Stack<Room> rooms;
     private Room currentRoom;
     private ArrayList<Item> pickedItems;
-    final int carryingLimit;
+    private int carryingLimit;
     private int currentWeight;
+    private boolean haveRead;
     /**
      * Constructor for objects of class Player
      */
@@ -15,6 +16,7 @@ public class Player
         rooms = new Stack<Room>();
         pickedItems = new ArrayList<Item>();
         carryingLimit = 2500;
+        haveRead = false;
     }
 
     public void setCurrentRoom(Room room){
@@ -113,6 +115,18 @@ public class Player
         }
         else{
             System.out.println("Your pockets are empty, boy");
+        }
+    }
+
+    public void read(String id){
+        if(currentRoom.getDescription().equals("saturn") && !haveRead){
+            carryingLimit += carryingLimit;
+            haveRead = true;
+            System.out.println("You've discovered what god really is. You acknowledge every single thing about the universe, but make sure you make it usefull");
+            System.out.println("Carrying limit doubled. Enjoy");
+        }
+        else{
+            System.out.println("Nothing to read here");
         }
     }
 }   
