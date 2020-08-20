@@ -158,6 +158,11 @@ public class Game
         else if(commandWord.equals("take")){
             player.getItems();
         }
+        else if(commandWord.equals("drop")){
+            if(command.hasSecondWord()){
+                player.drop(command.getSecondWord().toString());
+            }
+        }
         else{
             System.out.println("You can't do that :/");
         }

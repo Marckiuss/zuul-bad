@@ -32,4 +32,8 @@ public class Item
     public int getWeight(){
         return itemWeight;
     }
+    
+    public boolean isPickable(){
+        return pickable;
+    }
 } 

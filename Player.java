@@ -96,4 +96,15 @@ public class Player
             System.out.println("Your pockets are empty! :( \n");
         }
     }
-}
+
+    public void drop(String Description){
+        for(int i = 0; i < pickedItems.size(); i++){
+            Item item = pickedItems.get(i);
+            if(item.getDescription().equals(Description) && item.isPickable()){
+                currentRoom.addItem(item);
+                pickedItems.remove(item);
+                System.out.println("You've dropped " + item.getDescription() + "\n");
+            }
+        }
+    }
+}   
