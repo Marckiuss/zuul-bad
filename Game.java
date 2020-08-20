@@ -41,11 +41,11 @@ public class Game
         Item pickaxe, rayGun, alienSecret, spaceFood, rover;
 
         //create items
-        pickaxe = new Item("Pickaxe", 2000);
-        rayGun = new Item("Ray gun", 500);
-        alienSecret = new Item("Alien Secret", 1000);
-        spaceFood = new Item("Space food", 800);
-        rover = new Item("Rover",10000);
+        pickaxe = new Item("pickaxe", "pickaxe", 2000, true);
+        rayGun = new Item("Ray gun", "rayGun", 500, true);
+        alienSecret = new Item("Alien Secret", "secret", 99999, false);
+        spaceFood = new Item("Space food", "food", 800, true);
+        rover = new Item("Rover", "rover",10000, false);
 
         Room earth, iss, moon, mars, jupiter, saturn, ess;
 
@@ -96,7 +96,6 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -150,6 +149,19 @@ public class Game
         }
         else if (commandWord.equals("back")){
             player.back();
+        }
+        else if(commandWord.equals("take")){
+            if(command.hasSecondWord()){
+                player.take(command.getSecondWord().toString());
+            }
+        }
+        else if(commandWord.equals("items")){
+            player.getItems();
+        }
+        else if(commandWord.equals("drop")){
+            if(command.hasSecondWord()){
+                player.drop(command.getSecondWord().toString());
+            }
         }
         else{
             System.out.println("You can't do that :/");

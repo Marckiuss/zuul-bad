@@ -1,14 +1,20 @@
 import java.util.Stack;
+import java.util.ArrayList;
 public class Player
 {
     private Stack<Room> rooms;
     private Room currentRoom;
+    private ArrayList<Item> pickedItems;
+    final int carryingLimit;
+    private int currentWeight;
     /**
      * Constructor for objects of class Player
      */
     public Player()
     {
         rooms = new Stack<Room>();
+        pickedItems = new ArrayList<Item>();
+        carryingLimit = 2500;
     }
 
     public void setCurrentRoom(Room room){
@@ -62,4 +68,51 @@ public class Player
             look();
         }
     }
-}
+
+    public void take(String id){
+        ArrayList<Item> availableItems = currentRoom.getRoomItems();
+        boolean picked = false;
+        for(int i = 0; i < availableItems.size() && !picked; i++){
+            Item item = availableItems.get(i);
+            if(item.getId().equals(id) && currentWeight + item.getWeight() < carryingLimit){
+                picked = true;
+                pickedItems.add(item);
+                availableItems.remove(item);
+                currentWeight += item.getWeight();
+                System.out.println("You've picked up" + item.getDescription() + "You can carry another " + (carryingLimit - currentWeight) + " grams");                
+            }
+            else{
+                System.out.println("You can't pick that :/ Try to drop something");
+            }
+        }
+    }
+
+    public void getItems(){
+        if(!pickedItems.isEmpty()){
+            for(Item item : pickedItems ){
+                System.out.println(item.getDescription());
+            }
+            System.out.println("Total weight: " + currentWeight + "\n" + "You can carry another " + (carryingLimit - currentWeight) + " grams \n");
+        }
+        else{
+            System.out.println("Your pockets are empty! :( \n");
+        }
+    }
+
+    public void drop(String id){
+        if(!pickedItems.isEmpty()){
+            for(int i = 0; i < pickedItems.size(); i++){
+                Item item = pickedItems.get(i);
+                if(item.getId().equals(id) && item.isPickable()){
+                    currentWeight -= item.getWeight();
+                    currentRoom.addItem(item);
+                    pickedItems.remove(item);
+                    System.out.println("You've dropped " + item.getDescription() + "\n" + "You can now carry " + (carryingLimit - currentWeight) + " grams \n");
+                }
+            }
+        }
+        else{
+            System.out.println("Your pockets are empty, boy");
+        }
+    }
+}   
