@@ -28,4 +28,8 @@ public class Item
         }
         return aDevolver;
     }
+    
+    public int getWeight(){
+        return itemWeight;
+    }
 } 

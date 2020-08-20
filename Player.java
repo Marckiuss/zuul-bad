@@ -82,4 +82,18 @@ public class Player
             }
         }
     }
+
+    public void getItems(){
+        int actualWeight = 0;
+        if(!pickedItems.isEmpty()){
+            for(Item item : pickedItems ){
+                System.out.println(item.getDescription());
+                actualWeight += item.getWeight();
+            }
+            System.out.println("Total weight: " + actualWeight + "\n");
+        }
+        else{
+            System.out.println("Your pockets are empty! :( \n");
+        }
+    }
 }
