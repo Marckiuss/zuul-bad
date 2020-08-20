@@ -10,21 +10,23 @@ public class Item
     private int itemWeight;
     private String itemDescription;
     private boolean pickable;
+    private String id;
 
     /**
      * Constructor for objects of class Item
      */
-    public Item(String description, int weight, boolean pickable)
+    public Item(String description, String id, int weight, boolean pickable)
     {
         this.itemDescription = description;
         this.itemWeight = weight;
         this.pickable = pickable;
+        this.id = id;
     }
 
     public String getDescription(){
         String aDevolver = "";
         if(itemDescription != null){
-            aDevolver = "Item: " + itemDescription + "\n"+ "Weight: " + itemWeight + "\n";
+            aDevolver = "Item: " + itemDescription + "\n"+ "Weight: " + itemWeight + "\n" + id + "\n";
         }
         return aDevolver;
     }
@@ -35,5 +37,9 @@ public class Item
     
     public boolean isPickable(){
         return pickable;
+    }
+    
+    public String getId(){
+        return id;
     }
 } 

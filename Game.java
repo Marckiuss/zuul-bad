@@ -41,11 +41,11 @@ public class Game
         Item pickaxe, rayGun, alienSecret, spaceFood, rover;
 
         //create items
-        pickaxe = new Item("Pickaxe", 2000, true);
-        rayGun = new Item("Ray gun", 500, true);
-        alienSecret = new Item("Alien Secret", 99999, false);
-        spaceFood = new Item("Space food", 800, true);
-        rover = new Item("Rover",10000, false);
+        pickaxe = new Item("pickaxe", "pickaxe", 2000, true);
+        rayGun = new Item("Ray gun", "rayGun", 500, true);
+        alienSecret = new Item("Alien Secret", "secret", 99999, false);
+        spaceFood = new Item("Space food", "food", 800, true);
+        rover = new Item("Rover", "rover",10000, false);
 
         Room earth, iss, moon, mars, jupiter, saturn, ess;
 
@@ -155,7 +155,7 @@ public class Game
                 player.take(command.getSecondWord().toString());
             }
         }
-        else if(commandWord.equals("take")){
+        else if(commandWord.equals("items")){
             player.getItems();
         }
         else if(commandWord.equals("drop")){
